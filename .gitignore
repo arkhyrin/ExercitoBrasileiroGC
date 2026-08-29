@@ -1,0 +1,173 @@
+# Build outputs
+
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+arm64/
+[Aa]rtifacts/
+[Dd]ist/
+[Bb]uild/
+[Oo]ut/
+[Pp]ublish/
+[Ll]og/
+[Ll]ogs/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# .NET
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.userprefs
+*.pdb
+*.cache
+*.dll
+*.exe
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code
+
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains
+
+.idea/
+*.iml
+*.ipr
+*.iws
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Node.js
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.yarn/
+.pnpm-store/
+.nyc_output/
+coverage/
+dist/
+
+# Environment / secrets
+
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Databases
+
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs
+
+*.log
+*.log.*
+logs/
+log/
+
+# Temporary files
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.swp
+*.swo
+*.swn
+*.pid
+*.pid.lock
+*.lock
+
+# OS files
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Archives
+
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.bz2
+*.xz
+
+# Crash dumps
+
+*.dmp
+*.dump
+crash-reports/
+
+# Local configuration
+
+*.local
+*.local.*
+config.local.*
+settings.local.*
+
+# IDE metadata
+
+.history/
+*.code-workspace
+*.workspace
+
+# Test / coverage
+
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Generated documentation
+
+docs/_build/
+
+# Misc
+
+*.orig
+*.rej
+*.stackdump
+*.pid
+*.seed
+EOF
+roblox.js
+bot.js
+src/data

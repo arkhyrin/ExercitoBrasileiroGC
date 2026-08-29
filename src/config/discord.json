@@ -1,0 +1,17 @@
+{
+    "mainServerId": "1515750409225113620",
+    "otherServerIds": {
+        "COEx": "1515801960320860240"
+    },
+    "mainServerData": {
+        "AIChannelId": "1539827766030237706"
+    },
+    "otherServerData": {
+        "COEx": {
+            "banChannelId": "1516487410123407572"
+        }
+    },
+    "relatorios": {
+        "Ban": "> **{BANIMENTO}**\n> ===========================================\n> ➔ **Responsável: {RESPONSAVEL}**\n> ===========================================\n> ➔ **Nomenclatura do infrator e/ou ID no Discord: {INFRATOR}**\n> ➔ **Motivo: {MOTIVO}**\n> ===========================================\n> ➔ **Tempo: {TEMPO}**\n> ➔ **Plataforma (Roblox e/ou Discord): {PLATAFORMA}**\n> **===============▼COMPROVAÇÃO▼===============**"
+    }
+}
