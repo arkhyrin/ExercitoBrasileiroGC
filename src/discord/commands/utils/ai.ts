@@ -10,8 +10,7 @@ import discordConfig from "../../../config/discord.json" with { type: "json" };
 
 const forbiddenResponses = [
     "@everyone",
-    "@here",
-    "01"
+    "@here"
 ];
 
 const forbiddenQuestions = [
