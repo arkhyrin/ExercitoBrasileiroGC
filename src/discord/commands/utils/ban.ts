@@ -138,50 +138,58 @@ export default {
 
         var duration =
             parts[2] ||
-            "Tempo indefinido";
+            "perm";
+
+        if (duration.toLowerCase() === "perm") {
+            duration = "perm";
+        }
 
         var reason =
             parts.slice(3).join(" ") ||
             "Sem motivo especificado.";
 
         var formatDuration = (
-            value: string
-        ): string => {
-            var match = value.match(
-                /^(\d+)([smhdw])$/i
-            );
+    value: string
+): string => {
+    if (value.toLowerCase() === "perm") {
+        return "Permanente";
+    }
 
-            if (!match) {
-                return value;
-            }
+    var match = value.match(
+        /^(\d+)([smhdw])$/i
+    );
 
-            var amount = Number(match[1]);
-            var unit = match[2].toLowerCase();
+    if (!match) {
+        return value;
+    }
 
-            var units: Record<string, string> = {
-                s: amount === 1
-                    ? "segundo"
-                    : "segundos",
+    var amount = Number(match[1]);
+    var unit = match[2].toLowerCase();
 
-                m: amount === 1
-                    ? "minuto"
-                    : "minutos",
+    var units: Record<string, string> = {
+            s: amount === 1
+                ? "segundo"
+                : "segundos",
 
-                h: amount === 1
-                    ? "hora"
-                    : "horas",
+            m: amount === 1
+                ? "minuto"
+                : "minutos",
 
-                d: amount === 1
-                    ? "dia"
-                    : "dias",
+            h: amount === 1
+                ? "hora"
+                : "horas",
 
-                w: amount === 1
-                    ? "semana"
-                    : "semanas"
-            };
+            d: amount === 1
+                ? "dia"
+                : "dias",
 
-            return `${amount} ${units[unit]}`;
+            w: amount === 1
+                ? "semana"
+                : "semanas"
         };
+
+        return `${amount} ${units[unit]}`;
+    };
 
         var formattedDuration =
             formatDuration(duration);
