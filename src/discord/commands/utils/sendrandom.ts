@@ -52,7 +52,7 @@ export default {
         client: Client,
         message: Message
     ) {
-        if (message.member?.id !== "1515879832020320377") {
+        if (message.member?.id !== "1232880700512796732") {
             return message.reply(
                 "❌ Você não tem permissão para usar este comando."
             );
