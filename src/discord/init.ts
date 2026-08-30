@@ -1,12 +1,15 @@
 import {
     Client,
-    GatewayIntentBits
+    GatewayIntentBits,
+    TextChannel
 } from "discord.js";
 
 import dotenv from "dotenv";
 
 import { registerMessageCreate } from "./events/messageCreate.js";
 import { registerReady } from "./events/ready.js";
+
+import discordConfig from "../config/discord.json" with { type: "json" };
 
 dotenv.config();
 
@@ -28,3 +31,34 @@ if (!TOKEN) {
 }
 
 client.login(TOKEN);
+
+setInterval(() => {
+    const messages = discordConfig.RandomMessages;
+
+    if (!messages?.length) {
+        return;
+    }
+
+    const randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
+
+    const channel = client.channels.cache.get(
+        discordConfig.mainServerData.randomMessagesChannelId
+    ) as TextChannel | undefined;
+
+    if (!channel) {
+        console.error(
+            "Canal de mensagens aleatórias não encontrado:",
+            discordConfig.mainServerData.randomMessagesChannelId
+        );
+
+        return;
+    }
+
+    channel.send(randomMessage).catch((error) => {
+        console.error(
+            "Erro ao enviar mensagem aleatória:",
+            error
+        );
+    });
+}, 1000);
