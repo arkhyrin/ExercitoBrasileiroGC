@@ -16,6 +16,6 @@
         "Ban": "> **{BANIMENTO}**\n> ===========================================\n> ➔ **Responsável: {RESPONSAVEL}**\n> ===========================================\n> ➔ **Nomenclatura do infrator e/ou ID no Discord: {INFRATOR}**\n> ➔ **Motivo: {MOTIVO}**\n> ===========================================\n> ➔ **Tempo: {TEMPO}**\n> ➔ **Plataforma (Roblox e/ou Discord): {PLATAFORMA}**\n> **===============▼COMPROVAÇÃO▼===============**"
     },
     "RandomMessages": [
-
+        
     ]
 }
