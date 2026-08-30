@@ -32,7 +32,7 @@ if (!TOKEN) {
 
 client.login(TOKEN);
 
-setInterval(() => {
+function sendRandomMessage() {
     const messages = discordConfig.RandomMessages;
 
     if (!messages?.length) {
@@ -61,4 +61,12 @@ setInterval(() => {
             error
         );
     });
-}, 1000 * 30 * 60); // 30 minutos
+}
+
+client.on("ready", () => {
+    sendRandomMessage();
+
+    setInterval(() => {
+        sendRandomMessage();
+    }, 1000 * 10 * 60); // 10 minutos
+})
