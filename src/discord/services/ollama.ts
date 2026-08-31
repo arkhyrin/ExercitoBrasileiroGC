@@ -195,14 +195,14 @@ export async function perguntarIA(
             role: "system",
             content:
                 personalidade +
+                `Você tem acesso à ${constituicao}, PRIORIZE-A sempre na hora de responder. RESPONDA PERGUNTAS APENAS COM O QUE ESTÁ NA CONSTITUIÇÃO` +
                 "\n\n" +
                 "Você tem acesso a um histórico de conversas com o usuário, que pode ser usado para fornecer respostas mais precisas e personalizadas. " +
                 "Use o histórico de forma inteligente, mas não dependa dele para responder. " +
                 "Se o histórico não for relevante para a pergunta atual, ignore-o." +
                 "\n\n" +
                 `O id de quem está falando com você é ${usuarioId}.` +
-                `O nome de quem está falando com você é ${nomeUsuario}.` +
-                `Você também tem acesso à ${constituicao}, PRIORIZE-A sempre na hora de responder.`
+                `O nome de quem está falando com você é ${nomeUsuario}.` 
         },
         ...historico,
         {
