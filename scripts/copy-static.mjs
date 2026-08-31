@@ -1,19 +1,7 @@
-import { cp, mkdir } from "node:fs/promises";
-import { existsSync } from "node:fs";
-import path from "node:path";
+import { cp } from "node:fs/promises";
 
-const source = path.resolve("src");
-const destination = path.resolve("dist/src");
-
-if (!existsSync(destination)) {
-    await mkdir(destination, { recursive: true });
-}
-
-await cp(source, destination, {
-    recursive: true,
-    filter: (src) => {
-        return /\.(html|css)$/i.test(src) || !path.extname(src);
-    }
+await cp("src/website/public", "dist/src/website/public", {
+    recursive: true
 });
 
-console.log("Arquivos HTML e CSS copiados.");
+console.log("Website copiado.");
