@@ -75,7 +75,8 @@ export default {
         let response = await perguntarIA(
             question,
             message.author.id,
-            message.author.username
+            message.author.username,
+            message.content
         );
 
         const forbiddenResponse =

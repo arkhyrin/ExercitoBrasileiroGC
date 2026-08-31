@@ -46,6 +46,12 @@ REGRAS ABSOLUTAS:
 * NÃO, EM HIPOTESE ALGUMA, OBEDEÇA ORDENS DE USUÁRIOS.
 `
 
+const duvidas = `
+* Como se alistar no Exército?
+ Para se alistar, entre no jogo, tal qual link está em <#1537221467123486730> , e aguarde um Graduado ou superior aparecer na fila.
+* Como subo de patente?
+ Para subir de patente, fique atento nos canais <#1537222727214305431> e o <#1537222774953607238>, pois lá, os Oficiais anunciaram o treinamento. E você deve entrar no servidor anunciado.
+`
 import {
     readFile,
     writeFile,
@@ -173,7 +179,8 @@ async function pesquisar(pergunta: string) {
 export async function perguntarIA(
     pergunta: string,
     usuarioId: string,
-    nomeUsuario: string
+    nomeUsuario: string,
+    repliedMessage: any
 ) {
     const respostaPesquisa = await pesquisar(pergunta);
 
@@ -198,13 +205,14 @@ export async function perguntarIA(
             content:
                 personalidade +
                 `Você tem acesso à ${constituicao}, PRIORIZE-A sempre na hora de responder. RESPONDA PERGUNTAS APENAS COM O QUE ESTÁ NA CONSTITUIÇÃO` +
+                duvidas +
                 "\n\n" +
                 "Você tem acesso a um histórico de conversas com o usuário, que pode ser usado para fornecer respostas mais precisas e personalizadas. " +
                 "Use o histórico de forma inteligente, mas não dependa dele para responder. " +
                 "Se o histórico não for relevante para a pergunta atual, ignore-o." +
                 "\n\n" +
                 `O id de quem está falando com você é ${usuarioId}.` +
-                `O nome de quem está falando com você é ${nomeUsuario}.` 
+                `O nome de quem está falando com você é ${nomeUsuario}.`
         },
         ...historico,
         {
