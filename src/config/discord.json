@@ -36,15 +36,15 @@
     "RandomStatus": [
         {
             "type": "WATCHING",
-            "message": "o Theuxzzzy"
+            "message": "assistindo ao Theuxzzzy"
         },
         {
             "type": "LISTENING",
-            "message": "o lucas_aricoal pular"
+            "message": "ouvindo o lucas_aricoal pular"
         },
         {
             "type": "PLAYING",
-            "message": "com o eclypse"
+            "message": "jogando com o eclypse"
         }
     ]
 }
