@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && node scripts/copy-static.mjs",
     "start": "git add . && git commit -m 'Update' && git push -u origin main && npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

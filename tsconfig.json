@@ -14,9 +14,6 @@
     "include": [
         "index.ts",
         "src/**/*.ts",
-        "src/**/*.js",
-        "src/**/*.json",
-        "src/**/*.html",
-        "src/**/*.css"
+        "src/**/*.js"
     ]
 }
