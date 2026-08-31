@@ -47,6 +47,6 @@ const server = createServer(async (req, res) => {
     }
 });
 
-server.listen(3000, () => {
-    console.log("Site rodando em http://localhost:3000");
+server.listen(80, () => {
+    console.log("Site rodando em http://localhost:80");
 });
