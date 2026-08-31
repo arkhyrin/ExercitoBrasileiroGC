@@ -51,7 +51,7 @@ import {
 } from "node:fs/promises";
 
 const constituicao = await readFile(
-    "./src/data/constituicao.txt",
+    "../../../src/data/constituicao.txt",
     "utf-8"
 );
 
