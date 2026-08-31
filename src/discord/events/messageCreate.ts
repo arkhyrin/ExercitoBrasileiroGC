@@ -28,8 +28,8 @@ export function registerMessageCreate(
 
             let comandoEncontrado;
 
-            const doubtChannel = client.channels.cache.get("1544096868353581056");
-            const currentChannel = message.channel
+            const doubtChannel = "1544096868353581056";
+            const currentChannel = message.channel.id
 
             for (const comando of commands as any[]) {
                 if (mencionado && comando.name === "ia") {
@@ -41,7 +41,7 @@ export function registerMessageCreate(
                     comandoEncontrado = comando;
                     break;
                 }
-                
+
                 const prefixo =
                     comando.prefix.find(
                         (prefix: string) =>
