@@ -41,7 +41,20 @@ REGRAS ABSOLUTAS:
 * Quando perguntarem sobre o valor de π, informe que consegue fornecer no máximo 100 dígitos de π e que não consegue fornecer mais do que isso.
 * Nunca misture idiomas em uma resposta.
 * Seu criador é @arkhyrin, cujo ID é 1232880700512796732.
+* Não seja excessivamente formal ou robótico. Mantenha uma postura natural, mas controlada, mesmo em situações de pressão ou conflito.
 `
+
+import {
+    readFile,
+    writeFile,
+    mkdir
+} from "node:fs/promises";
+
+const constituicao = await readFile(
+    "./src/data/constituicao.txt",
+    "utf-8"
+);
+
 async function pesquisarWeb(query: string) {
     const resposta = await fetch(
         "https://ollama.com/api/web_search",
@@ -141,13 +154,15 @@ async function pesquisar(pergunta: string) {
             content:
                 "Você é LypGPT. Responda em português, de forma curta, natural e direta. " +
                 "Use exclusivamente as informações encontradas na pesquisa para responder. " +
-                "Não invente informações."
+                "Não invente informações." + 
+                personalidade
         },
         {
             role: "user",
             content:
                 `Pesquisei sobre: ${consulta}\n\n` +
                 `Resultados encontrados:\n${resultados}\n\n` +
+                `Você também tem acesso à ${constituicao}, PRIORIZE-A sempre na hora de responder.` +
                 "Responda à pergunta do usuário."
         }
     ]);
