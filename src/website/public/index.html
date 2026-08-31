@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EbSecurity</title>
-  </head>
-  <body>
-    <h1>theus é viado.</h1>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Screen Share</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            margin: 20px 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+
+        video {
+            width: 90%;
+            max-width: 1200px;
+            background: black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Screen Share</h1>
+
+    <button id="share">Compartilhar tela</button>
+    <button id="stop">Parar</button>
+
+    <br>
+
+    <video id="screen" autoplay playsinline></video>
+
+    <script src="/script.js"></script>
+
+</body>
 </html>
