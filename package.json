@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "npm run clean && tsc && node scripts/copy-static.mjs",
     "gitupdate": "git add . && git commit -m \"Atualização automática\" && git push",
     "start": "npm run build && node dist/index.js",
@@ -20,8 +20,6 @@
     "fs": "^0.0.1-security",
     "readline": "^1.3.0",
     "rozod": "^6.9.0",
-    "rimraf": "^6.1.3",
-    "typescript": "^7.0.2",
     "express": "^4.18.2"
   },
   "devDependencies": {
