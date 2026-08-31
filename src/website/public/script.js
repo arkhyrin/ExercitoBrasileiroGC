@@ -2,47 +2,23 @@ const shareButton = document.getElementById("share");
 const stopButton = document.getElementById("stop");
 const video = document.getElementById("screen");
 
-const socket = new WebSocket(
-    `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`
-);
-
 let stream = null;
-let peer = null;
-
-const configuration = {
-    iceServers: [
-        {
-            urls: "stun:stun.l.google.com:19302"
-        }
-    ]
-};
-
-function send(data) {
-    if (socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify(data));
-    }
-}
-
-function createPeer() {
-    peer = new RTCPeerConnection(configuration);
-
-    peer.onicecandidate = (event) => {
-        if (event.candidate) {
-            send({
-                type: "candidate",
-                candidate: event.candidate
-            });
-        }
-    };
-
-    peer.ontrack = (event) => {
-        video.srcObject = event.streams[0];
-    };
-
-    return peer;
-}
 
 shareButton.addEventListener("click", async () => {
+    console.log("Botão clicado");
+
+    if (!navigator.mediaDevices?.getDisplayMedia) {
+        alert("Seu navegador não disponibiliza compartilhamento de tela neste contexto.");
+        console.error("getDisplayMedia não disponível");
+        return;
+    }
+
+    if (!window.isSecureContext) {
+        alert("O compartilhamento de tela exige HTTPS.");
+        console.error("Contexto não seguro:", location.href);
+        return;
+    }
+
     try {
         stream = await navigator.mediaDevices.getDisplayMedia({
             video: true,
@@ -51,108 +27,38 @@ shareButton.addEventListener("click", async () => {
 
         video.srcObject = stream;
 
-        createPeer();
+        console.log("Tela compartilhada!");
 
-        for (const track of stream.getTracks()) {
-            peer.addTrack(track, stream);
-        }
+        const videoTrack = stream.getVideoTracks()[0];
 
-        const offer = await peer.createOffer();
-
-        await peer.setLocalDescription(offer);
-
-        send({
-            type: "offer",
-            offer: peer.localDescription
+        videoTrack.addEventListener("ended", () => {
+            console.log("Compartilhamento encerrado pelo usuário");
+            stopSharing();
         });
 
-        stream.getVideoTracks()[0].addEventListener("ended", stopSharing);
-
     } catch (error) {
-        console.error("Erro ao compartilhar:", error);
+        console.error("Erro ao compartilhar tela:", error);
+
+        alert(
+            `Não foi possível compartilhar a tela.\n\n` +
+            `${error.name}: ${error.message}`
+        );
     }
 });
 
 stopButton.addEventListener("click", stopSharing);
 
 function stopSharing() {
-    if (stream) {
-        for (const track of stream.getTracks()) {
-            track.stop();
-        }
-
-        stream = null;
+    if (!stream) {
+        return;
     }
 
-    if (peer) {
-        peer.close();
-        peer = null;
+    for (const track of stream.getTracks()) {
+        track.stop();
     }
 
+    stream = null;
     video.srcObject = null;
 
-    send({
-        type: "stop"
-    });
+    console.log("Compartilhamento parado");
 }
-
-socket.addEventListener("message", async (event) => {
-    const message = JSON.parse(event.data);
-
-    if (message.type === "offer") {
-
-        if (stream) {
-            return;
-        }
-
-        createPeer();
-
-        await peer.setRemoteDescription(
-            new RTCSessionDescription(message.offer)
-        );
-
-        const answer = await peer.createAnswer();
-
-        await peer.setLocalDescription(answer);
-
-        send({
-            type: "answer",
-            answer: peer.localDescription
-        });
-    }
-
-    else if (message.type === "answer") {
-
-        if (!peer) {
-            return;
-        }
-
-        await peer.setRemoteDescription(
-            new RTCSessionDescription(message.answer)
-        );
-    }
-
-    else if (message.type === "candidate") {
-
-        if (!peer) {
-            return;
-        }
-
-        try {
-            await peer.addIceCandidate(
-                new RTCIceCandidate(message.candidate)
-            );
-        } catch (error) {
-            console.error("Erro ICE:", error);
-        }
-    }
-
-    else if (message.type === "stop") {
-        if (peer) {
-            peer.close();
-            peer = null;
-        }
-
-        video.srcObject = null;
-    }
-});
