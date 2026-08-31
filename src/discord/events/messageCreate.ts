@@ -4,6 +4,7 @@ import {
 } from "discord.js";
 
 import commands from "../commands/index.js";
+import { channel } from "node:diagnostics_channel";
 
 export function registerMessageCreate(
     client: Client
@@ -27,12 +28,20 @@ export function registerMessageCreate(
 
             let comandoEncontrado;
 
+            const doubtChannel = client.channels.cache.get("1544096868353581056");
+            const currentChannel = message.channel
+
             for (const comando of commands as any[]) {
                 if (mencionado && comando.name === "ia") {
                     comandoEncontrado = comando;
                     break;
                 }
-
+                
+                if (doubtChannel === currentChannel && comando.name === "ia") {
+                    comandoEncontrado = comando;
+                    break;
+                }
+                
                 const prefixo =
                     comando.prefix.find(
                         (prefix: string) =>
