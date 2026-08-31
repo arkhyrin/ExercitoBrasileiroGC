@@ -8,28 +8,31 @@ const __dirname = dirname(__filename);
 
 const publicDir = join(__dirname, "public");
 
+const types = {
+    ".html": "text/html; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".js": "text/javascript; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon"
+};
+
 const server = createServer(async (req, res) => {
     try {
-        let file = req.url === "/" ? "index.html" : req.url;
+        let file = req.url || "/";
 
-        // Evita problemas com query strings, como /style.css?v=1
         file = file.split("?")[0];
+
+        if (file === "/") {
+            file = "/index.html";
+        }
 
         const filePath = join(publicDir, file);
 
         const content = await readFile(filePath);
-
-        const types = {
-            ".html": "text/html; charset=utf-8",
-            ".css": "text/css; charset=utf-8",
-            ".js": "text/javascript; charset=utf-8",
-            ".json": "application/json; charset=utf-8",
-            ".png": "image/png",
-            ".jpg": "image/jpeg",
-            ".jpeg": "image/jpeg",
-            ".svg": "image/svg+xml",
-            ".ico": "image/x-icon"
-        };
 
         res.writeHead(200, {
             "Content-Type":
@@ -38,7 +41,9 @@ const server = createServer(async (req, res) => {
         });
 
         res.end(content);
-    } catch {
+    } catch (error) {
+        console.error(error);
+
         res.writeHead(404, {
             "Content-Type": "text/plain; charset=utf-8"
         });
@@ -48,5 +53,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(80, () => {
-    console.log("Site rodando em http://localhost:80");
+    console.log("Site rodando na porta 80");
 });
