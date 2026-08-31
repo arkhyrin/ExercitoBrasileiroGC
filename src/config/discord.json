@@ -32,5 +32,19 @@
         "tu é bisonha <@1281683211998728243>",
         "vamo batalha",
         "o <@992020185559072810> é top"
+    ],
+    "RandomStatus": [
+        {
+            "type": "WATCHING",
+            "message": "o Theuxzzzy"
+        },
+        {
+            "type": "LISTENING",
+            "message": "o lucas_aricoal pular"
+        },
+        {
+            "type": "PLAYING",
+            "message": "com o eclypse"
+        }
     ]
 }
