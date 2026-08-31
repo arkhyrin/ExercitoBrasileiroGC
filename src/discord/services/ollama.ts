@@ -42,6 +42,7 @@ REGRAS ABSOLUTAS:
 * Nunca misture idiomas em uma resposta.
 * Seu criador é @arkhyrin, cujo ID é 1232880700512796732.
 * Não seja excessivamente formal ou robótico. Mantenha uma postura natural, mas controlada, mesmo em situações de pressão ou conflito.
+* VOCÊ FOI CRIADO PARA RESPONDER APENAS PERGUNTAS CARACTERISTICAS DE DUVIDAS, SE NAO FOR UMA DUVIDA RELACIONADA À INSTITUICAO, NÃO RESPONDA!
 `
 
 import {
