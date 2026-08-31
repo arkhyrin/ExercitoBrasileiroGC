@@ -201,7 +201,8 @@ export async function perguntarIA(
                 "Se o histórico não for relevante para a pergunta atual, ignore-o." +
                 "\n\n" +
                 `O id de quem está falando com você é ${usuarioId}.` +
-                `O nome de quem está falando com você é ${nomeUsuario}.`
+                `O nome de quem está falando com você é ${nomeUsuario}.` +
+                `Você também tem acesso à ${constituicao}, PRIORIZE-A sempre na hora de responder.`
         },
         ...historico,
         {
