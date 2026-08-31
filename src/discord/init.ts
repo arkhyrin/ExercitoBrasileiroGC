@@ -127,7 +127,7 @@ client.once("ready", () => {
 
     setInterval(() => {
         sendRandomMessage();
-    }, 1000 * 10 * 60);
+    }, Math.floor(Math.random() * (45 - 10 + 1) + 10) * 60 * 1000);
 });
 
 client.login(TOKEN);
