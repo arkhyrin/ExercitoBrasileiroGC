@@ -2,10 +2,10 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { WebSocketServer } from "ws";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 const publicDir = join(__dirname, "public");
 
 const types = {
@@ -36,26 +36,6 @@ const server = createServer(async (req, res) => {
         res.writeHead(404);
         res.end("404 - Página não encontrada");
     }
-});
-
-const wss = new WebSocketServer({ server });
-
-const clients = new Set();
-
-wss.on("connection", (socket) => {
-    clients.add(socket);
-
-    socket.on("message", (data) => {
-        for (const client of clients) {
-            if (client !== socket && client.readyState === 1) {
-                client.send(data);
-            }
-        }
-    });
-
-    socket.on("close", () => {
-        clients.delete(socket);
-    });
 });
 
 server.listen(80, "0.0.0.0", () => {
