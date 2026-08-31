@@ -155,7 +155,8 @@ async function pesquisar(pergunta: string) {
 
 export async function perguntarIA(
     pergunta: string,
-    usuarioId: string
+    usuarioId: string,
+    nomeUsuario: string
 ) {
     const respostaPesquisa = await pesquisar(pergunta);
 
@@ -182,7 +183,10 @@ export async function perguntarIA(
                 "\n\n" +
                 "Você tem acesso a um histórico de conversas com o usuário, que pode ser usado para fornecer respostas mais precisas e personalizadas. " +
                 "Use o histórico de forma inteligente, mas não dependa dele para responder. " +
-                "Se o histórico não for relevante para a pergunta atual, ignore-o."
+                "Se o histórico não for relevante para a pergunta atual, ignore-o." +
+                "\n\n" +
+                `O id de quem está falando com você é ${usuarioId}.` +
+                `O nome de quem está falando com você é ${nomeUsuario}.`
         },
         ...historico,
         {
