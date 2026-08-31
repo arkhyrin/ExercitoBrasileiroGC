@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc && node scripts/copy-static.mjs",
-    "start": "git add . && git commit -m 'Update' && git push -u origin main && npm run build && node dist/index.js",
+    "gitupdate": "git add . && git commit -m \"Atualização automática\" && git push",
+    "start": "npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
