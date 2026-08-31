@@ -8,12 +8,12 @@
         "strict": true,
         "esModuleInterop": true,
         "types": ["node"],
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "allowJs": true
     },
     "include": [
         "index.ts",
         "src/**/*.ts",
-        "src/website",
         "src/**/*.js"
     ]
 }
