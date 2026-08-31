@@ -125,8 +125,6 @@ client.once("ready", () => {
         updateRandomStatus();
     }, 1000 * 60 * 5);
 
-    sendRandomMessage();
-
     setInterval(() => {
         sendRandomMessage();
     }, 1000 * 10 * 60);
